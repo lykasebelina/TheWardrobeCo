@@ -45,6 +45,12 @@
             padding: 5px 10px;
             transition: background-color 0.3s;
         }
+        
+        nav a.active {
+  color: #e6554e;
+  font-weight: bold;
+}
+        
         nav a:hover {
             background-color: graytext;
             border-radius: 5px;
@@ -253,5 +259,21 @@
             document.getElementById("search-bar").classList.toggle("expanded");
         });
     </script>
+    
+    <script>
+  // Get the current URL
+  var currentURL = window.location.href;
+
+  // Get all menu links
+  var menuLinks = document.querySelectorAll('nav a');
+
+  // Loop through all menu links
+  menuLinks.forEach(function(link) {
+    // If the link's href matches the current URL, add the active class
+    if (currentURL.includes(link.href)) {
+      link.classList.add('active');
+    }
+  });
+</script>
 </body>
 </html>
