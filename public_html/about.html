@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wardrobe Co.</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            background-color: white;
+            color: black;
+            padding: 20px 40px;
+            height: 80px;
+        }
+        .logo {
+            width: 70px;
+            height: auto;
+        }
+        .title {
+            position: absolute;
+            left: 16%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: graytext;
+            border-radius: 5px;
+        }
+        .center-section {
+            display: flex;
+            position: absolute;
+            left: 40%;
+            gap: 20px;
+        }
+        .right-section {
+            position: relative;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            width: 300px;
+        }
+        .search-bar {
+            position: absolute;
+            right: 120px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            overflow: visible;
+            display: none;
+            transition: width 0.3s ease;
+        }
+        .search-bar.expanded {
+            display: block;
+            width: 200px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .icon {
+            cursor: pointer;
+        }
+        .icon-search {
+            width: 33px;
+            height: 33px;
+        }
+        .icon-profile {
+            width: 35px;
+            height: 35px;
+        }
+        .icon-cart {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .hero-banner {
+            background-image: url('images/about-us.png');
+            background-size: cover;
+            background-position: center;
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #EFEEEE;
+            padding: 40px;
+            text-align: center;
+        }
+        .about-section h2 {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .about-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Founding History Image */
+        .founding-history-image {
+            background-image: url('images/beginning.png');
+            background-size: cover;
+            background-position: center;
+            height: 350px;
+            margin-top: 0px;
+            position: relative;
+        }
+        .founding-history-image h3 {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+        }
+        
+        
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+        }
+        
+        
+        .company-column {
+            width: 30%;
+            margin: 20px 70px;
+        }
+
+        .company-column p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #bbb;
+            
+            
+        }
+        
+        
+        
+        
+        .footer-column {
+            width: 24%;
+            margin: 20px 70px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        
+        .footer-column p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #bbb;
+            max-width: 80px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+        }
+        
+           hr {
+      border: 1px solid #333333; /* Gray line */
+      margin: 0 0; /* Optional spacing */
+    }
+      
+        
+         .copyright-footer {
+  background-color: black;
+  color: #fff;
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 10px 0; /* Add some breathing room */
+  font-size: 14px;
+}
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left-section">
+            <img src="images/logo.jpg" alt="The Wardrobe Co. Logo" class="logo">
+        </div>
+
+        <span class="title">The Wardrobe Co.</span>
+
+        <div class="center-section">
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="shop.html">SHOP</a>
+                <a href="about.html">ABOUT</a>
+                <a href="contact.html">CONTACT</a>
+            </nav>
+        </div>
+        
+        <div class="right-section">
+            <img src="images/search.png" alt="Search" class="icon icon-search" id="search-icon">
+            <div class="search-bar" id="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <img src="images/profile.png" alt="Profile" class="icon icon-profile">
+            <img src="images/cart.png" alt="Cart" class="icon icon-cart">
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <!-- Empty hero banner for visual impact -->
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2>Our Founding History</h2>
+        <p>We came up with this business idea because all of us, as friends, share a love for clothes. Whenever we go out, shopping for clothes is always part of our activities. We enjoy collecting various clothing styles, and that passion inspired us to turn it into a business. One of our friends came up with the name “The Wardrobe Co.”</p>
+        <p>The business officially started on September 23, 1999, in Barangay Timbao, Biñan, Laguna. We specialize in offering a variety of clothing styles commonly worn by Filipinos. Our collections include casual attire, formal wear, and accessories that cater to the everyday needs of people. Over the years, we’ve built a loyal customer base, ranging from kids to adults, who travel just to shop with us. Our products are trusted for their high-quality fabrics and excellent craftsmanship.</p>
+        <p>In addition to selling ready-to-wear clothing, all the designs featured on our website are our original creations. Each piece reflects our creativity and passion for fashion, ensuring that every customer feels confident and stylish in what they wear.</p>
+        <p>When The Wardrobe Co. was founded, it was just a small shop in Biñan, catering to local customers. Through hard work and dedication, we gradually expanded and became a household name in the area. Our commitment to quality and innovation has allowed us to earn almost 1 million pesos annually, which is a testament to the trust and satisfaction of our customers. Today, The Wardrobe Co. stands as a symbol of our shared dream turned into reality, continuing to provide stylish, high-quality clothing for everyone.</p>
+    </section>
+
+    <!-- Founding History Image Section -->
+    <section class="founding-history-image">
+        <h3>Our Journey from Small Beginnings</h3>
+    </section>
+    
+    
+    
+    <!-- Footer -->
+    <footer>
+        <div class="company-column">
+            <h3>THE WARDROBE CO.</h3>
+            <p>At The Wardrobe & Co., we believe that fashion is more than just clothing; it's about expressing individuality and embracing confidence. Our commitment is to provide timeless style that empowers every customer.</p>
+            
+        </div>
+        <div class="footer-column">
+            <h3>SUPPORT</h3>
+            <ul>
+                <li><a href="#">Customer Service</a></li>
+                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>ABOUT US</h3>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>FOLLOW US</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+     <hr>
+
+     <footer class="copyright-footer">
+    <p>&copy; 2025 The Wardrobe & Co. All rights reserved.</p>
+  </footer>
+    
+    <script>
+        const searchIcon = document.getElementById("search-icon");
+        const searchBar = document.getElementById("search-bar");
+
+        searchIcon.addEventListener("click", () => {
+            searchIcon.style.display = "none";
+            searchBar.classList.add("expanded");
+        });
+    </script>
+</body>
+</html>

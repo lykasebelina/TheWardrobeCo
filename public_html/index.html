@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wardrobe Co.</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9; /* Beige color */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            background-color: white;
+            color: black;
+            padding: 20px 40px;
+            height: 80px;
+        }
+        .logo {
+            width: 70px;
+            height: auto;
+        }
+        .title {
+            position: absolute;
+            left: 16%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: graytext;
+            border-radius: 5px;
+        }
+        .center-section {
+            display: flex;
+            position: absolute;
+            left: 40%;
+            gap: 20px;
+        }
+        .right-section {
+            position: relative;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            width: 300px;
+        }
+        .search-bar {
+            position: absolute;
+            right: 120px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            overflow: visible;
+            display: none;
+            transition: width 0.3s ease;
+        }
+        .search-bar.expanded {
+            display: block;
+            width: 200px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .icon {
+            cursor: pointer;
+        }
+        .icon-search {
+            width: 33px;
+            height: 33px;
+        }
+        .icon-profile {
+            width: 35px;
+            height: 35px;
+        }
+        .icon-cart {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background-image: url('images/herobanner.png');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Additional Image Section */
+        .services-image {
+            background-image: url('images/services.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 100px;
+        }
+
+        .best-sellers {
+            padding: 20px;
+            background-color: #f9f9f9;
+            
+        }
+
+        .best-sellers h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 35px; /* Increased font size */
+  font-weight: bold;
+        }
+
+        .best-sellers p {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-left: 295px;
+            color: #555;
+            max-width: 800px;
+        }
+
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .product-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 10px;
+        }
+
+        .product-card .price {
+            font-size: 1rem;
+            color: #ff6f61;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-card .stock {
+            font-size: 0.9rem;
+            color: green;
+            margin-bottom: 10px;
+        }
+
+        .product-card .reviews {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .product-card .rating {
+            margin-bottom: 10px;
+            color: #ffb400;
+        }
+
+        .product-card button {
+            background: black;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .product-card button:hover {
+            background: #e6554e;
+        }
+
+        .sale-image {
+            background-image: url('images/salebanner.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 40px;
+            margin-bottom: 100px;
+        }
+        
+        
+        
+        .view-more-btn {
+  display: block;
+  padding: 10px 20px; /* Increased padding for bigger button */
+  margin-top: 50px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 8px; /* Slightly rounded corners for a bigger button */
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px; /* Increased max-width */
+  margin-left: 605px;
+  margin-right: auto;
+  margin-bottom: 80px;
+  font-size: 15px; /* Increased font size */
+  font-weight: bold;
+}
+
+.view-more-btn:hover {
+  background-color: #e6554e;
+}
+
+.view-more-btn span {
+  margin-left: 8px; /* Space between text and arrow */
+}
+
+/* Optional: Style the anchor link to remove default styling */
+.view-more-link {
+  text-decoration: none; /* Remove underline */
+}
+        
+        
+        
+        
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+           
+        }
+        
+        
+        .company-column {
+            width: 30%;
+            margin: 20px 70px;
+        }
+
+        .company-column p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #bbb;
+            
+            
+        }
+        
+        
+        
+        
+        .footer-column {
+            width: 24%;
+            margin: 20px 70px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        
+        .footer-column p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #bbb;
+            max-width: 80px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+        }
+        
+        hr {
+      border: 1px solid #333333; /* Gray line */
+      margin: 0 0; /* Optional spacing */
+    }
+        
+        
+       .copyright-footer {
+             
+  background-color: black;
+  color: #fff;
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 10px 0; /* Add some breathing room */
+  font-size: 14px;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left-section">
+            <img src="images/logo.jpg" alt="The Wardrobe Co. Logo" class="logo">
+        </div>
+
+        <span class="title">The Wardrobe Co.</span>
+
+        <div class="center-section">
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="shop.html">SHOP</a>
+                <a href="about.html">ABOUT</a>
+                <a href="contact.html">CONTACT</a>
+            </nav>
+        </div>
+        
+        <div class="right-section">
+            <img src="images/search.png" alt="Search" class="icon icon-search" id="search-icon">
+            <div class="search-bar" id="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <img src="images/profile.png" alt="Profile" class="icon icon-profile">
+            <img src="images/cart.png" alt="Cart" class="icon icon-cart">
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="hero-banner">
+        <!-- Empty hero banner for visual impact -->
+    </section>
+
+    <!-- Additional Image Section -->
+    <section class="services-image">
+        <!-- Empty section with additional background image -->
+    </section>
+
+    <!-- OUR BEST SELLERS Section -->
+    <section class="best-sellers">
+        <h2>OUR BEST SELLERS</h2>
+        <p>Discover our best-selling collection, where style meets quality. These handpicked favorites are loved by our customers for their timeless appeal and unmatched comfort.</p>
+        
+        
+        <div class="product-cards">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="images/product39.jpg" alt="Product 3">
+            <h3>Trendy letter heart graphic print hoodie</h3>
+            <p class="price">PHP 1,850.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">5172 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="images/product30.jpg" alt="Product 3">
+            <h3>Oversized Shirt Unisex Tie Dye Stitch Print</h3>
+            <p class="price">PHP 350.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">6853 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product16.jpg" alt="Product 3">
+            <h3>White Pink Cottage Lace Milkmaid Dress</h3>
+            <p class="price">PHP 730.00</p>
+            <p class="stock">Pre-order</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">5931 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        
+         <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product38.jpg" alt="Product 3">
+            <h3>Summer Bow Hat Female Big Brimmed Hat </h3>
+            <p class="price">PHP 330.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">9654 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+         
+          <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product5.jpg" alt="Product 3">
+            <h3>Women's Sun Protection Hat With Wide Brim</h3>
+            <p class="price">PHP 300.00</p>
+            <p class="stock">Pre-order</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">1961 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+          
+           <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product20.jpg" alt="Product 3">
+            <h3>Linen Summer Hat with a Print</h3>
+            <p class="price">PHP 599.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">9904 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+           
+            <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product17.jpg" alt="Product 3">
+            <h3>High quality Cotton Plain Unisex Tshirt</h3>
+            <p class="price">PHP 280.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">2143 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+            
+             <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product13.jpg" alt="Product 3">
+            <h3>Workout Shorts For Woman Highwaist</h3>
+            <p class="price">PHP 250.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">6481 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+             
+              <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product27.jpg" alt="Product 3">
+            <h3>Brushed Cotton Hat Letter Embroidered Cap</h3>
+            <p class="price">PHP 245.00</p>
+            <p class="stock">Only 3 left in stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">7553 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+              
+               <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product10.jpg" alt="Product 3">
+            <h3>Womens Oversized Los Angeles California TShirts</h3>
+            <p class="price">PHP 360.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">4781 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        </div>
+    </section>
+    
+    
+    
+    <section class="sale-image">
+        <!-- Empty section with additional background image -->
+    </section>
+    
+    
+    
+    
+     <section class="best-sellers">
+        <h2>OUR NEWEST COLLECTION</h2>
+        <p>Elevate your wardrobe with our newest collection, crafted for timeless style. Explore fresh designs that blend elegance and modern trends!</p>
+        
+        
+        <div class="product-cards">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="images/product36.jpg" alt="Product 3">
+            <h3>Women High Waisted Seam Slit Zip Pocket</h3>
+            <p class="price">PHP 1,000.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">562 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+                
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="images/product34.jpg" alt="Product 3">
+            <h3>Women Summer High Waist Asymmetrical Hem</h3>
+            <p class="price">PHP 410.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">2322 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product32.jpg" alt="Product 3">
+            <h3>New Balance 530 low-top lace-up Sneakers</h3>
+            <p class="price">PHP 4,850.00</p>
+            <p class="stock">Pre-order</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">387 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        
+         <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product25.jpg" alt="Product 3">
+            <h3>Nike Air Jordan 1 'Wolf Grey Aluminum'</h3>
+            <p class="price">PHP 5,850.00</p>
+            <p class="stock">Pre-order</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">842 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+           </div> 
+         
+          <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product22.jpg" alt="Product 3">
+            <h3>Plus Shirred Waist Cat Whisker Skinny Jeans</h3>
+            <p class="price">PHP 3,150.00</p>
+            <p class="stock">Out of Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">532 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+          
+           <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product21.jpg" alt="Product 3">
+            <h3>Cotton mini cross body phone bag (yellow) </h3>
+            <p class="price">PHP 489.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">732 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+           
+            <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product18.jpg" alt="Product 3">
+            <h3>Yves Saint Laurent Black Leather Shoulder Bag</h3>
+            <p class="price">PHP 10,850.00</p>
+            <p class="stock">Only 6 left in stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">609 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+            
+             <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product11.jpg" alt="Product 3">
+            <h3>Casual Fashion White Platform Sneakers</h3>
+            <p class="price">PHP 1,350.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">544 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+             
+              <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product8.jpg" alt="Product 3">
+            <h3>Korean Style Lace Embroidered Collar Shirt</h3>
+            <p class="price">PHP 700.00</p>
+            <p class="stock">Out of Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">4056 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+              
+               <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images/product7.jpg" alt="Product 3">
+            <h3>Women's Denim Jeans Sneakers Breathable</h3>
+            <p class="price">PHP 630.00</p>
+            <p class="stock">In Stock</p>
+            <p class="rating">Rating: ★★★★★</p>
+            <p class="reviews">242 reviews</p>
+            <button>Add to Cart</button>
+            <button>Buy Now</button>
+        </div>
+        </div>
+    </section>
+    
+    <a href="shop.html" class="view-more-link">
+  <button class="view-more-btn">
+    View More In The Shop &#8594; <!-- Right arrow (Unicode) -->
+  </button>
+</a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="company-column">
+            <h3>THE WARDROBE CO.</h3>
+            <p>At The Wardrobe & Co., we believe that fashion is more than just clothing; it's about expressing individuality and embracing confidence. Our commitment is to provide timeless style that empowers every customer.</p>
+            
+        </div>
+        <div class="footer-column">
+            <h3>SUPPORT</h3>
+            <ul>
+                <li><a href="#">Customer Service</a></li>
+                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>ABOUT US</h3>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>FOLLOW US</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+    <hr>
+
+     <footer class="copyright-footer">
+    <p>&copy; 2025 The Wardrobe & Co. All rights reserved.</p>
+  </footer>
+    
+    <script>
+        document.getElementById("search-icon").addEventListener("click", function () {
+            document.getElementById("search-bar").classList.toggle("expanded");
+        });
+    </script>
+</body>
+</html>

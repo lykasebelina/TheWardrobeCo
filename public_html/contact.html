@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wardrobe Co.</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #EFEEEE; /* Beige color */
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            background-color: white;
+            color: black;
+            padding: 20px 40px;
+            height: 80px;
+        }
+        .logo {
+            width: 70px;
+            height: auto;
+        }
+        .title {
+            position: absolute;
+            left: 16%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: graytext;
+            border-radius: 5px;
+        }
+        .center-section {
+            display: flex;
+            position: absolute;
+            left: 40%;
+            gap: 20px;
+        }
+        .right-section {
+            position: relative;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-end;
+            width: 300px;
+        }
+        .search-bar {
+            position: absolute;
+            right: 120px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            overflow: visible;
+            display: none;
+            transition: width 0.3s ease;
+        }
+        .search-bar.expanded {
+            display: block;
+            width: 200px;
+        }
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid black;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .icon {
+            cursor: pointer;
+        }
+        .icon-search {
+            width: 33px;
+            height: 33px;
+        }
+        .icon-profile {
+            width: 35px;
+            height: 35px;
+        }
+        .icon-cart {
+            width: 40px;
+            height: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+            
+        }
+        
+        
+        .company-column {
+            width: 30%;
+            margin: 20px 70px;
+        }
+
+        .company-column p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #bbb;
+            
+            
+        }
+        
+        
+        .footer-column {
+            width: 24%;
+            margin: 20px 70px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        
+        .footer-column p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #bbb;
+            max-width: 80px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            text-decoration: underline;
+        }
+        
+           hr {
+      border: 1px solid #333333; /* Gray line */
+      margin: 0 0; /* Optional spacing */
+    }
+      
+         .copyright-footer {
+  background-color: black;
+  color: #fff;
+  display: flex; /* Enable Flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 10px 0; /* Add some breathing room */
+  font-size: 14px;
+}
+        
+        </style>
+</head>
+<body>
+    <header>
+        <div class="left-section">
+            <img src="images/logo.jpg" alt="The Wardrobe Co. Logo" class="logo">
+        </div>
+
+        <span class="title">The Wardrobe Co.</span>
+
+        <div class="center-section">
+            <nav>
+                <a href="index.html">HOME</a>
+                <a href="shop.html">SHOP</a>
+                <a href="about.html">ABOUT</a>
+                <a href="contact.html">CONTACT</a>
+            </nav>
+        </div>
+        
+        <div class="right-section">
+            <img src="images/search.png" alt="Search" class="icon icon-search" id="search-icon">
+            <div class="search-bar" id="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <img src="images/profile.png" alt="Profile" class="icon icon-profile">
+            <img src="images/cart.png" alt="Cart" class="icon icon-cart">
+        </div>
+    </header>
+    
+    
+    <!-- Footer -->
+    <footer>
+        <div class="company-column">
+            <h3>THE WARDROBE CO.</h3>
+            <p>At The Wardrobe & Co., we believe that fashion is more than just clothing; it's about expressing individuality and embracing confidence. Our commitment is to provide timeless style that empowers every customer.</p>
+            
+        </div>
+        <div class="footer-column">
+            <h3>SUPPORT</h3>
+            <ul>
+                <li><a href="#">Customer Service</a></li>
+                <li><a href="#">Return & Exchange</a></li>
+                <li><a href="#">Shipping & Delivery</a></li>
+                <li><a href="#">FAQs</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>ABOUT US</h3>
+            <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h3>FOLLOW US</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">Twitter</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+     <hr>
+
+     <footer class="copyright-footer">
+    <p>&copy; 2025 The Wardrobe & Co. All rights reserved.</p>
+  </footer>
+
+    <script>
+        document.getElementById("search-icon").addEventListener("click", function () {
+            document.getElementById("search-bar").classList.toggle("expanded");
+        });
+    </script>
+</body>
+</html>
