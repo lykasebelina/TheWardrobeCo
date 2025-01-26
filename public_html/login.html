@@ -1,15 +1,238 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Website - Login or Signup</title>
+    <style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 10px 70px; /* Adjust the padding to give even space on left/right */
+    padding-bottom: 40px;
+    padding-top: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #444444;
+    font-weight: bold;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #666666;
+}
+
+.form-group input {
+    width: 100%; /* Ensure input fields fill 100% of the container's width */
+    padding: 12px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px; /* Adds space between fields */
+}
+
+.form-group input:focus {
+    border-color: #fda085;
+    outline: none;
+    background-color: #fff7f1;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f6d365;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #fda085;
+    color: white;
+}
+
+.password-toggle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.password-toggle button {
+    background: none;
+    border: none;
+    color: #fda085;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 5px; /* Adds space above the button */
+}
+
+.switch {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.switch a {
+    color: #fda085;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.switch a:hover {
+    color: #f57d41;
+    text-decoration: underline;
+}
+
+.illustration {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.illustration img {
+    width: 100px;
+    height: auto;
+}
+
+#error-message {
+    color: red;
+    text-align: center;
+    display: none;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px; /* Adjust padding for small screens */
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+    <div class="illustration">
+        <img src="images/logo.jpg" alt="Shopping Icon">
+    </div>
+    <h2>Welcome Back</h2>
+    <div id="error-message">Invalid email or password</div>
+    <form id="login-form">
+        <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group password-toggle">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+            <button type="button" onclick="togglePassword('login-password')">Show Password</button>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <div class="switch">
+        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up here</a></p>
+    </div>
+</div>
+
+    <div class="container" id="signup-container" style="display: none;">
+        <div class="illustration">
+            <img src="https://via.placeholder.com/100" alt="Signup Icon">
+        </div>
+        <h2>Create Account</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group password-toggle">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="password" placeholder="Enter your password" required>
+                <button type="button" onclick="togglePassword('signup-password')">Show</button>
+            </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        <div class="switch">
+            <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function showSignup() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('signup-container').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('signup-container').style.display = 'none';
+            document.getElementById('login-container').style.display = 'block';
+        }
+
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (!email.includes('@') || password.length < 6) {
+                document.getElementById('error-message').style.display = 'block';
+            } else {
+                document.getElementById('error-message').style.display = 'none';
+                alert('Login successful!');
+            }
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            if (name.length < 3 || !email.includes('@') || password.length < 6) {
+                alert('Please fill out all fields correctly!');
+            } else {
+                alert('Signup successful!');
+                showLogin();
+            }
+        });
+    </script>
+</body>
 </html>
